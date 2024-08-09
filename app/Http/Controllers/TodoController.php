@@ -19,7 +19,15 @@ class TodoController extends Controller
         return new TodoResource($todo);
     }
 
-    public function show($todo) {
+    public function show($todo) 
+    {
         return new TodoResource(Todo::findOrFail($todo));
+    }
+
+    public function update($todo, TodoRequest $request) 
+    {
+        $todoItem = Todo::findOrFail($todo);
+        $todoItem->update($request->validated());
+        return new TodoResource($todoItem);
     }
 }
