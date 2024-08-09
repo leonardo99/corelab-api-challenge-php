@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FavoriteRequest;
 use App\Http\Resources\TodoResource;
 use App\Models\Todo;
-use Illuminate\Http\Request;
 
 class TodoFavoriteController extends Controller
 {
