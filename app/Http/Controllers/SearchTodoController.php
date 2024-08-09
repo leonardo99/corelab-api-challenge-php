@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Actions\FilterTodos;
+use App\Http\Requests\FilterTodosRequest;
 use App\Http\Resources\TodoResource;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 
 class SearchTodoController extends Controller
 {
-    public function index(Request $request)
+    public function index(FilterTodosRequest $request)
     {
         try {
-
             $todos = FilterTodos::run($request->favorite)
             ->where('title', 'like', "%$request->search%")
             ->paginate();
