@@ -30,4 +30,11 @@ class TodoController extends Controller
         $todoItem->update($request->validated());
         return new TodoResource($todoItem);
     }
+
+    public function destroy($todo)
+    {
+        $todoItem = Todo::findOrFail($todo);
+        $todoItem->delete();
+        return response()->json(['message' => 'O todo foi deletado.'], 200);
+    }
 }
