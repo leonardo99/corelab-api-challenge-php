@@ -13,7 +13,7 @@ class TodoController extends Controller
         try {
             return TodoResource::collection(Todo::paginate());
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['data' => ['error' => $e->getMessage()]], 500);
         }
     }
 
@@ -23,7 +23,7 @@ class TodoController extends Controller
             $todo = Todo::create($request->validated());
             return new TodoResource($todo);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['data' => ['error' => $e->getMessage()]], 500);
         }
     }
 
@@ -32,7 +32,7 @@ class TodoController extends Controller
         try {
             return new TodoResource(Todo::findOrFail($todo));
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['data' => ['error' => $e->getMessage()]], 500);
         }
     }
 
@@ -43,7 +43,7 @@ class TodoController extends Controller
             $todoItem->update($request->validated());
             return new TodoResource($todoItem);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['data' => ['error' => $e->getMessage()]], 500);
         }
     }
 
@@ -54,7 +54,7 @@ class TodoController extends Controller
             $todoItem->delete();
             return response()->json(['message' => 'O todo foi deletado.'], 200);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['data' => ['error' => $e->getMessage()]], 500);
         }
     }
 }
